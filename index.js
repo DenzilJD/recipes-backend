@@ -23,13 +23,12 @@ app.get('/', (req, res) => {
 app.use('/users',userRoutes);
 app.use('/recipes',recipeRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Running on ${PORT}`);
-});
-
 mongoose.connect(MONGO_URI)
     .then(() => {
         console.log("DB Connected.");
+        app.listen(PORT, () => {
+            console.log(`Running on ${PORT}`);
+        });
     })
     .catch((error) => {
         console.log(error);
