@@ -1,9 +1,14 @@
 import express from 'express';
-import { PORT, mongoURI } from './config.js';
 import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes.js';
 import recipeRoutes from './routes/recipeRoutes.js';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+const dot=dotenv.config();
+
+const PORT=process.env.PORT||5000;
+const MONGO_URI=process.env.MONGO_URI;
 
 const app = express();
 
@@ -22,7 +27,7 @@ app.listen(PORT, () => {
     console.log(`Running on ${PORT}`);
 });
 
-mongoose.connect(mongoURI)
+mongoose.connect(MONGO_URI)
     .then(() => {
         console.log("DB Connected.");
     })
